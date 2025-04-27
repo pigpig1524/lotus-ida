@@ -1,2 +1,6 @@
 data/
 .env
+cache/
+*.log
+*.ipynb
+.streamlit/secrets.toml

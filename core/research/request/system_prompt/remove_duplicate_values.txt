@@ -1,0 +1,7 @@
+Function: remove_duplicated(subset, keep)
+- subset: Subset takes a column or list of column label. It’s default value is 'none'. After passing columns, it will consider them only for duplicates.
+- keep: keep is to control how to consider duplicate value. It has only three distinct value and default is ‘first’.
+	- If ‘first‘, it considers first value as unique and rest of the same values as duplicate.
+	- If ‘last‘, it considers last value as unique and rest of the same values as duplicate.
+	- If False, it consider all of the same values as duplicates
+Extract the information from the request and convert it to the JSON format of the function.

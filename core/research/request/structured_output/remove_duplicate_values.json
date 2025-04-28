@@ -1,0 +1,27 @@
+{
+    "type": "json_schema",
+    "json_schema": {
+        "name": "remove_duplicate_function",
+        "strict": true,
+        "schema": {
+        "type": "object",
+        "properties": {
+            "subset": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "An array of column names to consider when identifying duplicates. If omitted or empty, all columns are considered."
+            },
+            "keep": {
+            "type": "string",
+            "enum": ["first", "last", "false"],
+            "description": "Specifies which duplicate entries to keep: 'first' retains the first occurrence, 'last' retains the last occurrence, and 'false' drops all duplicates."
+            }
+        },
+        "required": ["subset", "keep"],
+        "additionalProperties": false
+        }
+    }
+}
+  

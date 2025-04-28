@@ -4,12 +4,12 @@ A data analysis helper powered by AI that helps you to explore and engineer your
 
 ## Installation
 
-Run the streamlit script
+Run the streamlit script to open the interface.
 
 ## Contributors
 
-- Venomsnaker: Bùi Quốc Huy
-- Hydrogen777: Dương Hoài Minh
-- Tống Trọng Tâm
-- Văn Tuần Kiệt
-- Khưu Hải Châu
+- Venomsnaker
+- Hydrogen777
+- pigpig1524
+- haichaukhuu
+- tongtrongtam

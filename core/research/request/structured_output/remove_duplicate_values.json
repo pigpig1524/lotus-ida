@@ -1,7 +1,7 @@
 {
     "type": "json_schema",
     "json_schema": {
-        "name": "remove_duplicate_function",
+        "name": "remove_duplicate_values_function",
         "strict": true,
         "schema": {
         "type": "object",
@@ -15,8 +15,8 @@
             },
             "keep": {
             "type": "string",
-            "enum": ["first", "last", "false"],
-            "description": "Specifies which duplicate entries to keep: 'first' retains the first occurrence, 'last' retains the last occurrence, and 'false' drops all duplicates."
+            "enum": ["first", "last", false],
+            "description": "Specifies which duplicate entries to keep: 'first' retains the first occurrence, 'last' retains the last occurrence, and false drops all duplicates."
             }
         },
         "required": ["subset", "keep"],

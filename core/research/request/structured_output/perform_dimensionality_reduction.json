@@ -1,1 +1,26 @@
-{}
+{
+    "type": "json_schema",
+    "json_schema": {
+        "name": "perform_dimensionality_reduction_function",
+        "strict": true,
+        "schema": {
+        "type": "object",
+        "properties": {
+            "features": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "An array of column labels representing the feature columns that will be used as input for dimensionality reduction (PCA)."
+            },
+            "target": {
+            "type": "string",
+            "description": "The column label representing the target variable."
+            }
+        },
+        "required": ["features", "target"],
+        "additionalProperties": false
+        }
+    }
+}
+  

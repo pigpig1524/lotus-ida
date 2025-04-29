@@ -1,1 +1,28 @@
-{}
+{
+    "type": "json_schema",
+    "json_schema": {
+    "name": "fill_missing_values_function",
+    "strict": true,
+    "schema": {
+        "type": "object",
+        "properties": {
+        "subset": {
+            "type": "array",
+            "items": {
+            "type": "string"
+            },
+            "description": "An array of column labels representing the columns to consider for filling missing values. If not specified, no columns are considered by default."
+        },
+        "metric": {
+            "type": "string",
+            "enum": ["mean", "median", "mode"],
+            "description": "The metric used to fill missing values. It can be 'mean', 'median', or 'mode'. Default is 'mean'."
+        }
+        },
+        "required": ["subset", "metric"],
+        "additionalProperties": false
+    }
+    }
+}
+  
+  

@@ -1,1 +1,22 @@
-{}
+{
+    "type": "json_schema",
+    "json_schema": {
+        "name": "perform_correalation_analysis_function",
+        "strict": true,
+        "schema": {
+        "type": "object",
+        "properties": {
+            "subset": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "An array of columns that will be used as input to perform correlation analysis (create a heatmap)."
+            }
+        },
+        "required": ["subset"],
+        "additionalProperties": false
+        }
+    }
+}
+  

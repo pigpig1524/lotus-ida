@@ -1,1 +1,1 @@
-I want you to do PCA on column A.
+I want you to output the correlation map of columns atemp, temp, and humidity.

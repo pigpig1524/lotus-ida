@@ -1,1 +1,1 @@
-Fill the NULL values in column atemp using the column's mean.
+Fill the NULL values in column atemp using the column's mode.

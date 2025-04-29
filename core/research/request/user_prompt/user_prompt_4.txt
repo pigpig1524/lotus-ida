@@ -1,1 +1,1 @@
-I want you to output the correlation map of columns atemp, temp, and humidity.
+I want you to output the heat map of columns atemp, temp, and humidity.

@@ -1,0 +1,1 @@
+I want you to output the heat map of columns atemp, temp, and humidity.

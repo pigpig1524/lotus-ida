@@ -102,7 +102,6 @@ class Helper:
             return False, f'Columns not in the DataFrame: {subset}', None, None
         
     def perform_dimensionality_reduction(self, features, target):
-        print("Into PCA function")
         df = self.df
         subset = features.append(target)
         

@@ -5,3 +5,4 @@ numpy
 seaborn
 matplotlib
 scikit-learn
+httpx==0.24.1

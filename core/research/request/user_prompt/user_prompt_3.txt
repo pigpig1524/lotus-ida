@@ -1,0 +1,1 @@
+I want you to perform PCA on columns temp, atemp, and humidity. The target column is holiday.

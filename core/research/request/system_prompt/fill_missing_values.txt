@@ -1,0 +1,7 @@
+Function: fill_missing_values(subset, metric)
+- subset: subset takes a column or a list of column labels. Its default value is 'none'. When passing in the columns, the function will only consider them for filling in missing values.
+- metric: metric having only three distinct values: [mean, median, mode]. Its default value is mean.
+    - If 'mean', it fills in the missing values of a column by that column mean value.
+    - If 'median', it fills in the missing values of a column by that column median value.
+    - If 'mode', it fills in the missing values of a column by that column mode value.
+Extract the information from the request and convert it to the JSON format of the function.

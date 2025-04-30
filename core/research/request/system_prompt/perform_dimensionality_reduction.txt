@@ -1,0 +1,4 @@
+Function: perform_dimensionality_reduction(features, target)
+- features: features takes in a list of column labels representing the feature columns that will be used as input for dimensionality reduction (PCA).
+- target: target takes in the column label representing the target variable.
+Extract the information from the request and convert it to the JSON format of the function.

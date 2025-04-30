@@ -1,0 +1,2 @@
+The dictionary of possible action is {functions_dict}.
+You will decide whether the user wants to perform an action on the dataset. Return only the key of action (INT) in the list above.

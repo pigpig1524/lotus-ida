@@ -1,2 +1,5 @@
-secrets.toml
+.streamlit/secrets.toml
 data/
+.env
+*.pyc
+*.ipynb

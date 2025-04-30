@@ -1,0 +1,6 @@
+streamlit
+openai==1.52.2
+pandas
+numpy
+seaborn
+matplotlib

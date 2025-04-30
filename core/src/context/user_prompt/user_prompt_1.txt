@@ -1,0 +1,1 @@
+Please remove duplication values in columns temp, atemp, and humidity; don't keep any value.

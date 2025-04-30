@@ -3,7 +3,7 @@ import pandas as pd
 import os
 from app import chat_page
 
-st.title("Welcome to Lotus DA Hub!")
+st.title("Upload your data")
 
 # DATA_SOURCE_OPTIONS = [
 #     "Upload from your device",

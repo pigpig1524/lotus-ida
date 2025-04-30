@@ -1,9 +1,7 @@
 import streamlit as st
-from core.setup import setup_session
+from core.setup import setup_session, setup_sidebar
 
-# if "uploaded_file" not in st.session_state:
-#     st.session_state["uploaded_file"] = None
-
+setup_sidebar()
 setup_session()
 
 home_page = st.Page("pages/home.py", title="Home page", icon=":material/house:", default=True)

@@ -23,7 +23,6 @@ class Agent:
             model='solar-pro',
             messages=messages,
         )
-        print(type(response.choices[0].message.content))
         return response.choices[0].message.content
     
     def perform_classification(self, user_request):
@@ -68,7 +67,6 @@ class Agent:
         '''
         try:
             classification = self.perform_classification(user_request)
-            print(classification)
             function_name = Config.CLASSIFICATIONS[classification]
             function_parameters = {}
             

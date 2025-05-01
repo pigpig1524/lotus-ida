@@ -19,7 +19,7 @@ class Helper:
         success_function_info, function_name, function_parameters = agent.process_user_request(user_request=user_reuqest)
         if success_function_info:
             success_request, message, data, graph = self.map_json_to_function(function_name, function_parameters)
-            return message
+            return message, data
 
     def check_cols_in_dataframe(self, cols):
         df = self.df
@@ -47,6 +47,7 @@ class Helper:
         if self.check_cols_in_dataframe(subset):
             try:
                 return_message = f'Here is your data with duplicate values remove in subset: {self.convert_subset_to_message(subset)}, keep: {keep}'
+                new_df = df.drop_duplicates(subset=subset, keep=keep)
                 return True, return_message, df.drop_duplicates(subset=subset, keep=keep), None
             except Exception as e:
                 return False, e, None, None

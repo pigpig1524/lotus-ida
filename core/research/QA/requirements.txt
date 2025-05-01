@@ -6,3 +6,4 @@ streamlit
 toml
 langchain_experimental
 tabulate
+langchain-upstage

@@ -6,3 +6,9 @@ seaborn
 matplotlib
 scikit-learn
 httpx==0.24.1
+langchain
+langchain_experimental
+tabulate
+langchain-upstage
+langchain
+langchain_openai

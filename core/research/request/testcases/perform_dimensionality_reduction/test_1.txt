@@ -1,1 +1,1 @@
-I want you to perform PCA on column weather with the columns: temp, atemp, humidity, and windspeed.
+I want you to perform PCA with the target column weather.

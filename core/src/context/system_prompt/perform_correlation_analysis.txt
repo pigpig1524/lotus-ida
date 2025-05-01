@@ -1,3 +1,7 @@
-Function: perform_correlation_analysis(subset)
-- subset: subset takes in a list of columns that will be used as input to perform correlation analysis (create a heatmap).
+Function: perform_correlation_analysis(subset, method)
+- subset: subset takes in a list of columns that will be used as input to perform correlation analysis (create a heatmap). If no values given, all columns will be considered.
+Extract the information from the request and con,vert it to the JSON format of the function.
+- method: method having only two distinct values: [pearson, spearman]. Its default value is pearson.
+    - 'pearson': standard correlation coefficient 
+    - 'spearman': Spearman rank correlation
 Extract the information from the request and convert it to the JSON format of the function.

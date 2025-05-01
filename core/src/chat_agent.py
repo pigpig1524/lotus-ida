@@ -1,3 +1,5 @@
+import streamlit as st
+
 from langchain.schema import HumanMessage, SystemMessage
 import os
 from dotenv import load_dotenv
@@ -6,24 +8,23 @@ import pandas as pd
 import streamlit as st
 import toml
 import pandas as pd
-import numpy as np
-
+from core.config import Config
 
 #API key
-secrets = toml.load("../../../.streamlit/secrets.toml")
-openai_key = secrets["OPENAI_API_KEY"]
-os.environ["OPENAI_API_KEY"] = openai_key
+# secrets = toml.load("../../../.streamlit/secrets.toml")
+# openai_key = secrets["OPENAI_API_KEY"]
+# os.environ["OPENAI_API_KEY"] = openai_key
 
 
 
-load_dotenv()
+# load_dotenv()
 
-openai_key = os.getenv("OPENAI_API_KEY")
+# openai_key = os.getenv("OPENAI_API_KEY")
 
-llm_name = "gpt-4o-mini"
-model = ChatOpenAI(api_key=openai_key, model=llm_name)
+# llm_name = "gpt-4o-mini"
+# model = ChatOpenAI(api_key=Config.OPENAI_API_KEY, model=llm_name)
 
-df = pd.read_csv("../../data/test.csv").fillna(value=0)
+# df = st.session_state.data_frame
 
 
 from langchain_experimental.agents.agent_toolkits import (
@@ -31,12 +32,12 @@ from langchain_experimental.agents.agent_toolkits import (
     create_csv_agent,
 )
 
-agent = create_pandas_dataframe_agent(
-    llm=model,
-    df=df,
-    verbose=True,
-    allow_dangerous_code=True
-)
+# agent = create_pandas_dataframe_agent(
+#     llm=model,
+#     df=df,
+#     verbose=True,
+#     allow_dangerous_code=True
+# )
 
 CSV_PROMPT_PREFIX = """
 First set the pandas display options to show all the columns,
@@ -66,11 +67,27 @@ In the explanation, mention the column names that you used to get
 to the final answer.
 """
 
-QUESTION = "During working days, what is the average humidity?"
+# QUESTION = "During working days, what is the average humidity?"
 
-res = agent.invoke(CSV_PROMPT_PREFIX + QUESTION + CSV_PROMPT_SUFFIX)
+# res = agent.invoke(CSV_PROMPT_PREFIX + QUESTION + CSV_PROMPT_SUFFIX)
 
-print(res) 
-print("Answer:")
-print(res["output"])    
+# print(res) 
+# print("Answer:")
+# print(res["output"])    
 
+MODEL = ChatOpenAI(api_key=Config.OPENAI_API_KEY,
+                   model='gpt-4o-mini')
+
+class QAAgent:
+    def __init__(self, data):
+        self.client = create_pandas_dataframe_agent(llm=MODEL,
+                                                    df=data,
+                                                    verbose=True,
+                                                    allow_dangerous_code=True)
+        
+    def run(self, user_input):
+        try:
+            response = self.client.invoke(CSV_PROMPT_PREFIX + user_input + CSV_PROMPT_SUFFIX)
+            return response['output']
+        except Exception as e:
+            return "Something went wrong when we process your request! Please try again!"

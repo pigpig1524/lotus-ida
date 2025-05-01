@@ -11,7 +11,7 @@
             "items": {
                 "type": "string"
             },
-            "description": "An array of column labels representing the feature columns that will be used as input for dimensionality reduction (PCA)."
+            "description": "An array of column labels representing the feature columns that will be used as input for dimensionality reduction (PCA). If no column is given, the entire dataset is considered."
             },
             "target": {
             "type": "string",

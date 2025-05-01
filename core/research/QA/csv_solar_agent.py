@@ -9,8 +9,11 @@ from langchain.schema.runnable import RunnableLambda
 st.set_page_config(page_title="CSV Solar Agent", layout="wide")
 
 # --- API Key ---
-secrets = toml.load("./core/research/QA/.streamlit/secrets.toml")
-solar_api_key = secrets["api_keys"]["solar"]
+# secrets = toml.load("./core/research/QA/.streamlit/secrets.toml")
+# solar_api_key = secrets["api_keys"]["solar"]
+# os.environ["UPSTAGE_API_KEY"] = solar_api_key
+secrets = toml.load("../../../.streamlit/secrets.toml")
+solar_api_key = secrets['UPSTAGE_API_KEY']
 os.environ["UPSTAGE_API_KEY"] = solar_api_key
 
 @st.cache_resource

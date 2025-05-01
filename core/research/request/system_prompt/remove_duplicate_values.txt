@@ -1,6 +1,6 @@
 Function: remove_duplicate_values(subset, keep)
-- subset: subset takes a column or a list of column labels. Its default value is 'none'. When passing in columns, the function will only consider them for duplication removal.
-- keep: keep having only three distinct values: [first, last, false]. Its default value is false.
+- subset: subset takes a column or a list of column labels. Its default value is []. When passing in columns, the function will only consider them for duplication removal.
+- keep: keep having only three distinct values: ['first', 'last', 'false']. Its default value is 'false'.
 	- If 'first', it considers the first value as unique and the rest of the same values as duplicate.
 	- If 'last', it considers the last value as unique and the rest of the same values as duplicate.
 	- If 'false', it considers all the same values as duplicates.

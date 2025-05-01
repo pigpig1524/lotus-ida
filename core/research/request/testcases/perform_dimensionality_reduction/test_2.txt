@@ -1,0 +1,1 @@
+I want you to excecute dimensionality reduction with target colum: season with features: temp, atemp, humidity, and windspeed.

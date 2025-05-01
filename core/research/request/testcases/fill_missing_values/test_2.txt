@@ -1,0 +1,1 @@
+Fill the NULL values with median in class 'temp' and 'atemp'.

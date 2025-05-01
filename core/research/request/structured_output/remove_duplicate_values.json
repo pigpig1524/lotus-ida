@@ -11,12 +11,12 @@
             "items": {
                 "type": "string"
             },
-            "description": "An array of column names to consider when identifying duplicates. If omitted or empty, all columns are considered."
+            "description": "An array of column names to consider when identifying duplicates. If empty, all columns are considered."
             },
             "keep": {
             "type": "string",
-            "enum": ["first", "last", false],
-            "description": "Specifies which duplicate entries to keep: 'first' retains the first occurrence, 'last' retains the last occurrence, and false drops all duplicates."
+            "enum": ["first", "last", "false"],
+            "description": "Specifies which duplicate entries to keep: 'first' retains the first occurrence, 'last' retains the last occurrence, and 'false' drops all duplicates."
             }
         },
         "required": ["subset", "keep"],

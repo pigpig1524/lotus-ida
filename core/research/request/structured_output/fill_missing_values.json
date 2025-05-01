@@ -11,7 +11,7 @@
             "items": {
             "type": "string"
             },
-            "description": "An array of column labels representing the columns to consider for filling missing values. If not specified, no columns are considered by default."
+            "description": "An array of column labels representing the columns to consider for filling missing values. If not specified, all columns are considered by default."
         },
         "metric": {
             "type": "string",

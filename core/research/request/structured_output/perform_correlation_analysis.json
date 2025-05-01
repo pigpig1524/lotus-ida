@@ -11,10 +11,15 @@
             "items": {
                 "type": "string"
             },
-            "description": "An array of columns that will be used as input to perform correlation analysis (create a heatmap)."
+            "description": "An array of columns that will be used as input to perform correlation analysis (create a heatmap). If not specified, all columns are considered by default."
+            },
+            "method": {
+                "type": "string",
+                "enum": ["pearson", "spearman"],
+                "description": "The method is used to decide with correlation method will be used. It can be 'pearson' or 'spearman'. Default is 'pearson'"
             }
         },
-        "required": ["subset"],
+        "required": ["subset", "method"],
         "additionalProperties": false
         }
     }

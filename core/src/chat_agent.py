@@ -1,93 +1,90 @@
-import streamlit as st
+# import streamlit as st
 
-from langchain.schema import HumanMessage, SystemMessage
-import os
-from dotenv import load_dotenv
-from langchain_openai import ChatOpenAI
-import pandas as pd
-import streamlit as st
-import toml
-import pandas as pd
-from core.config import Config
-
-#API key
-# secrets = toml.load("../../../.streamlit/secrets.toml")
-# openai_key = secrets["OPENAI_API_KEY"]
-# os.environ["OPENAI_API_KEY"] = openai_key
+# from langchain.schema import HumanMessage, SystemMessage
+# import os
+# from dotenv import load_dotenv
+# from langchain_openai import ChatOpenAI
+# import pandas as pd
+# import streamlit as st
+# import toml
+# import pandas as pd
+# from core.config import Config
 
 
 
-# load_dotenv()
-
-# openai_key = os.getenv("OPENAI_API_KEY")
-
-# llm_name = "gpt-4o-mini"
-# model = ChatOpenAI(api_key=Config.OPENAI_API_KEY, model=llm_name)
-
-# df = st.session_state.data_frame
-
-
-from langchain_experimental.agents.agent_toolkits import (
-    create_pandas_dataframe_agent,
-    create_csv_agent,
-)
-
-# agent = create_pandas_dataframe_agent(
-#     llm=model,
-#     df=df,
-#     verbose=True,
-#     allow_dangerous_code=True
+# from langchain_experimental.agents.agent_toolkits import (
+#     create_pandas_dataframe_agent,
+#     create_csv_agent,
 # )
 
-CSV_PROMPT_PREFIX = """
-First set the pandas display options to show all the columns,
-get the column names, then answer the question.
-When you need to run Python code, use this exact format—without any brackets around the tool name:
-Action: python_repl_ast
-Action Input: <your Python command here>
-"""
 
-CSV_PROMPT_SUFFIX = """
-- **ALWAYS** before giving the Final Answer, try another method.
-Then reflect on the answers of the two methods you did and ask yourself
-if it answers correctly the original question.
-If you are not sure, try another method.
-FORMAT 4 FIGURES OR MORE WITH COMMAS.
-- If the methods tried do not give the same result,reflect and
-try again until you have two methods that have the same result.
-- If you still cannot arrive to a consistent result, say that
-you are not sure of the answer.
-- If you are sure of the correct answer, create a beautiful
-and thorough response using Markdown.
-- **DO NOT MAKE UP AN ANSWER OR USE PRIOR KNOWLEDGE,
-ONLY USE THE RESULTS OF THE CALCULATIONS YOU HAVE DONE**.
-- **ALWAYS**, as part of your "Final Answer", explain how you got
-to the answer on a section that starts with: "\n\nExplanation:\n".
-In the explanation, mention the column names that you used to get
-to the final answer.
-"""
+# CSV_PROMPT_PREFIX = """
+# First set the pandas display options to show all the columns,
+# get the column names, then answer the question.
+# When you need to run Python code, use this exact format—without any brackets around the tool name:
+# Action: python_repl_ast
+# Action Input: <your Python command here>
+# """
 
-# QUESTION = "During working days, what is the average humidity?"
+# CSV_PROMPT_SUFFIX = """
+# - **ALWAYS** before giving the Final Answer, try another method.
+# Then reflect on the answers of the two methods you did and ask yourself
+# if it answers correctly the original question.
+# If you are not sure, try another method.
+# FORMAT 4 FIGURES OR MORE WITH COMMAS.
+# - If the methods tried do not give the same result,reflect and
+# try again until you have two methods that have the same result.
+# - If you still cannot arrive to a consistent result, say that
+# you are not sure of the answer.
+# - If you are sure of the correct answer, create a beautiful
+# and thorough response using Markdown.
+# - **DO NOT MAKE UP AN ANSWER OR USE PRIOR KNOWLEDGE,
+# ONLY USE THE RESULTS OF THE CALCULATIONS YOU HAVE DONE**.
+# - **ALWAYS**, as part of your "Final Answer", explain how you got
+# to the answer on a section that starts with: "\n\nExplanation:\n".
+# In the explanation, mention the column names that you used to get
+# to the final answer.
+# """
 
-# res = agent.invoke(CSV_PROMPT_PREFIX + QUESTION + CSV_PROMPT_SUFFIX)
+# # QUESTION = "During working days, what is the average humidity?"
 
-# print(res) 
-# print("Answer:")
-# print(res["output"])    
+# # res = agent.invoke(CSV_PROMPT_PREFIX + QUESTION + CSV_PROMPT_SUFFIX)
 
-MODEL = ChatOpenAI(api_key=Config.OPENAI_API_KEY,
-                   model='gpt-4o-mini')
+# # print(res) 
+# # print("Answer:")
+# # print(res["output"])    
+
+# MODEL = ChatOpenAI(api_key=Config.OPENAI_API_KEY,
+#                    model='gpt-4o-mini')
+
+# class QAAgent:
+#     def __init__(self, data):
+#         self.client = create_pandas_dataframe_agent(llm=MODEL,
+#                                                     df=data,
+#                                                     verbose=True,
+#                                                     allow_dangerous_code=True)
+        
+#     def run(self, user_input):
+#         try:
+#             response = self.client.invoke(CSV_PROMPT_PREFIX + user_input + CSV_PROMPT_SUFFIX)
+#             return response['output']
+#         except Exception as e:
+#             return "Something went wrong when we process your request! Please try again!"
+
+from core.src.qa_agent.openai import OpenAIAgent
+from core.src.qa_agent.upstage import UpstageAgent
 
 class QAAgent:
     def __init__(self, data):
-        self.client = create_pandas_dataframe_agent(llm=MODEL,
-                                                    df=data,
-                                                    verbose=True,
-                                                    allow_dangerous_code=True)
-        
-    def run(self, user_input):
+        self.data = data
+
+    def run(self, user_input, model):
         try:
-            response = self.client.invoke(CSV_PROMPT_PREFIX + user_input + CSV_PROMPT_SUFFIX)
-            return response['output']
+            if model == 'gpt-4o-mini':
+                client = OpenAIAgent(self.data)
+                return client.run(user_input)
+            elif model == 'solar-pro':
+                client = UpstageAgent(self.data)
+                return client.run(user_input)
         except Exception as e:
             return "Something went wrong when we process your request! Please try again!"

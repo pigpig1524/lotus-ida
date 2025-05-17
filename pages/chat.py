@@ -45,6 +45,12 @@ from core.config import Config
 from core.src.chat_agent import QAAgent
 
 
+with st.sidebar:
+    model_choice = st.selectbox(label="Choose an AI model",
+                                options=['gpt-4o-mini',
+                                         'solar-pro'])
+
+
 def init_msg():
     if "messages" not in st.session_state:
         st.session_state.messages = [{'role': 'assistant', 'content': 'Hi! How can I assist you?'}]
@@ -70,7 +76,7 @@ else:
         # Add user message to chat history
         st.session_state.messages.append({"role": "user", "content": user_input})
 
-        response = helper.run(user_input)
+        response = helper.run(user_input, model_choice)
         # Display assistant response in chat message container
         with st.chat_message("assistant"):
             # st.write_stream(response)

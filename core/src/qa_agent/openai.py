@@ -46,6 +46,10 @@ ONLY USE THE RESULTS OF THE CALCULATIONS YOU HAVE DONE**.
 to the answer on a section that starts with: "\n\nExplanation:\n".
 In the explanation, mention the column names that you used to get
 to the final answer.
+- If the user asks to visualize, plot, draw, chart, or show a graph:
+    - DO generate the appropriate Python code using matplotlib.
+    - DO include the code at the end of your "Final Answer" in Markdown response.
+    - Wrap the code in a proper Python Markdown code block
 """
 
 

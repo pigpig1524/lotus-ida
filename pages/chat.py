@@ -46,7 +46,7 @@ from core.src.chat_agent import QAAgent
 
 
 with st.sidebar:
-    model_choice = st.selectbox(label="Choose an AI model",
+    model_choice = st.selectbox(label="Choose a LLM model",
                                 options=['gpt-4o-mini',
                                          'solar-pro'])
 
@@ -79,7 +79,34 @@ else:
         response = helper.run(user_input, model_choice)
         # Display assistant response in chat message container
         with st.chat_message("assistant"):
-            # st.write_stream(response)
             st.markdown(response)
+
+            # Detect any code in response
+            import re, contextlib, io
+            import matplotlib.pyplot as plt
+            import pandas as pd
+            code_blocks = re.findall(r"```python(.*?)```", response, re.DOTALL)
+
+            for code in code_blocks:
+                cleaned_code = re.sub(r"\.show\(\)", "", code.strip())  # Remove plt.show()
+                try:
+                    exec_globals = {
+                        "df": st.session_state.data_frame,
+                        "plt": plt,
+                        "pd": pd,
+                    }
+                    exec_locals = {}
+
+                    with contextlib.redirect_stdout(io.StringIO()):
+                        exec(cleaned_code, exec_globals, exec_locals)
+
+                    if "fig" in exec_locals:
+                        st.pyplot(exec_locals["fig"])
+                    else:
+                        st.pyplot(plt)
+                        plt.clf()
+                except Exception as e:
+                    st.error(f"Execution error: {e}")
+
         # Add assistant response to chat history
         st.session_state.messages.append({"role": "assistant", "content": response})

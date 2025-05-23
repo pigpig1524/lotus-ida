@@ -161,10 +161,10 @@ class UpstageAgent:
 
     def run(self, user_input: str):
         try:
-            # response = self.client.invoke(CSV_PROMPT_PREFIX + user_input + CSV_PROMPT_SUFFIX)
-            response = self.client.invoke(user_input)
-            from pprint import pprint
-            pprint(response)
+            response = self.client.invoke(CSV_PROMPT_PREFIX + user_input + CSV_PROMPT_SUFFIX)
+            # response = self.client.invoke(user_input)
+            # from pprint import pprint
+            # pprint(response)
             return response['output']
         except Exception as e:
             st.error(str(e))

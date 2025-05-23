@@ -6,6 +6,7 @@ import os
 class Config:
     OPENAI_API_KEY = st.secrets.get('OPENAI_API_KEY', None)
     UPSTAGE_API_KEY = st.secrets.get('UPSTAGE_API_KEY', None)
+    GEMINI_API_KEY = st.secrets.get('GEMINI_API_KEY', None)
     CLASSIFICATIONS = {
         0: 'none',
         1: 'remove_duplicate_values',

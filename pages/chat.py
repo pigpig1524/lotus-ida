@@ -48,7 +48,8 @@ from core.src.chat_agent import QAAgent
 with st.sidebar:
     model_choice = st.selectbox(label="Choose a LLM model",
                                 options=['gpt-4o-mini',
-                                         'solar-pro'])
+                                         'solar-pro',
+                                         'gemini pro'])
 
 
 def init_msg():

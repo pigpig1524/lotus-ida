@@ -30,7 +30,16 @@ def get_solar_runnable():
     )
     return RunnableLambda(lambda inputs, **kwargs: solar_llm.invoke(inputs, **kwargs))
 
-solar_runnable = get_solar_runnable()
+# solar_runnable = get_solar_runnable()
+
+solar_runnable = ChatUpstage(
+        model="solar-pro",
+        openai_api_base="https://api.upstage.ai/v1/solar",
+        openai_api_key=SOLAR_API_KEY,
+        streaming=False,
+        max_tokens= 2024,    
+        temperature= 0.0
+    )
 
 CSV_PROMPT_PREFIX = """
 First set the pandas display options to show all the columns,
@@ -152,7 +161,10 @@ class UpstageAgent:
 
     def run(self, user_input: str):
         try:
-            response = self.client.invoke(CSV_PROMPT_PREFIX + user_input + CSV_PROMPT_SUFFIX)
+            # response = self.client.invoke(CSV_PROMPT_PREFIX + user_input + CSV_PROMPT_SUFFIX)
+            response = self.client.invoke(user_input)
+            from pprint import pprint
+            pprint(response)
             return response['output']
         except Exception as e:
             st.error(str(e))

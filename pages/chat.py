@@ -49,7 +49,7 @@ with st.sidebar:
     model_choice = st.selectbox(label="Choose a LLM model",
                                 options=['gpt-4o-mini',
                                          'solar-pro',
-                                         'gemini pro'])
+                                         'gemini-2.0-flash'])
 
 
 def init_msg():

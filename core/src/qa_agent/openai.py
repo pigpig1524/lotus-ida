@@ -54,7 +54,7 @@ to the final answer.
 
 
 MODEL = ChatOpenAI(api_key=Config.OPENAI_API_KEY,
-                   model='gpt-4.1-mini')
+                   model='gpt-4o-mini')
 
 class OpenAIAgent:
     def __init__(self, data):

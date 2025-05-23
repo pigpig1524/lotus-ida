@@ -1,23 +1,7 @@
-import streamlit as st
-
-from langchain.schema import HumanMessage, SystemMessage
-from dotenv import load_dotenv
-from langchain_openai import ChatOpenAI
-import pandas as pd
-import streamlit as st
-import toml
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_experimental.agents.agent_toolkits import create_pandas_dataframe_agent
 import pandas as pd
 from core.config import Config
-from matplotlib import pyplot as plt
-import contextlib
-import re
-import io
-
-
-from langchain_experimental.agents.agent_toolkits import (
-    create_pandas_dataframe_agent,
-    create_csv_agent,
-)
 
 
 CSV_PROMPT_PREFIX = """
@@ -53,10 +37,11 @@ to the final answer.
 """
 
 
-MODEL = ChatOpenAI(api_key=Config.OPENAI_API_KEY,
-                   model='gpt-4.1-mini')
+MODEL = ChatGoogleGenerativeAI(model="gemini-2.0-flash",
+                               google_api_key=Config.GEMINI_API_KEY,
+                               temperature=0.2)
 
-class OpenAIAgent:
+class GeminiAgent:
     def __init__(self, data):
         self.client = create_pandas_dataframe_agent(llm=MODEL,
                                                     df=data,

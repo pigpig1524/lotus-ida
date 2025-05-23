@@ -73,6 +73,7 @@
 
 from core.src.qa_agent.openai import OpenAIAgent
 from core.src.qa_agent.upstage import UpstageAgent
+from core.src.qa_agent.gemini_agent import GeminiAgent
 
 class QAAgent:
     def __init__(self, data):
@@ -85,6 +86,9 @@ class QAAgent:
                 return client.run(user_input)
             elif model == 'solar-pro':
                 client = UpstageAgent(self.data)
+                return client.run(user_input)
+            elif model == 'gemini-2.0-flash':
+                client = GeminiAgent(self.data)
                 return client.run(user_input)
         except Exception as e:
             return "Something went wrong when we process your request! Please try again!"
